@@ -1,0 +1,386 @@
+/* --- CSS VARIABLES (THEME) --- */
+:root {
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --google-green-rgb: 15, 157, 88;
+  --google-red-rgb: 219, 68, 55;
+  --accent-primary: #1a73e8;
+  --accent-primary-hover: #1765cc;
+  --bg-header: rgba(248, 249, 250, 0.85);
+  --border-header: rgba(0, 0, 0, 0.1);
+  --bg-main: #ffffff;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --error-color: #d93025;
+  --icon-color: rgba(32, 33, 36, 0.85);
+  --primary-button-text: #ffffff;
+  --border-radius-md: 16px;
+  --border-radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  line-height: 1.6;
+  background: linear-gradient(135deg, #e6f0ff 0%, #fde2e6 100%);
+  background-attachment: fixed;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  padding: 1rem 2rem;
+  flex-grow: 1;
+}
+
+/* === DARK THEME OVERRIDES === */
+body.dark-theme {
+  --google-green-rgb: 50, 222, 132;
+  --google-red-rgb: 233, 69, 96;
+  --accent-primary: #8ab4f8;
+  --bg-header: rgba(32, 33, 36, 0.85);
+  --border-header: rgba(255, 255, 255, 0.15);
+  --bg-main: rgba(32, 33, 36, 0.7);
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0a6;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --icon-color: #e8eaed;
+  --primary-button-text: #202124;
+  --error-color: #f28b82;
+  background-color: #000;
+  background-image: radial-gradient(
+      at 1% 1%,
+      hsla(240, 87%, 50%, 0.3) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 99% 99%, hsla(339, 87%, 50%, 0.3) 0px, transparent 50%);
+}
+
+/* --- HEADER --- */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-header);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-header);
+}
+.back-button {
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+}
+.back-button i {
+  margin-right: 0.5em;
+}
+.back-button:hover {
+  color: var(--accent-primary);
+  background-color: rgb(26, 115, 232, 0.05);
+}
+.header-timer {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* --- THEME TOGGLE --- */
+.themeToggle {
+  color: var(--icon-color);
+  width: 2em;
+  height: 2em;
+}
+.st-sunMoonThemeToggleBtn {
+  position: relative;
+  cursor: pointer;
+}
+.st-sunMoonThemeToggleBtn .themeToggleInput {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+.st-sunMoonThemeToggleBtn svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
+  transform: rotate(40deg);
+  pointer-events: none;
+}
+.st-sunMoonThemeToggleBtn svg .sunMoon {
+  transform-origin: center center;
+  transition: inherit;
+}
+.st-sunMoonThemeToggleBtn svg .sunRay {
+  transform-origin: center center;
+  transform: scale(0);
+}
+.st-sunMoonThemeToggleBtn svg mask > circle {
+  transition: transform 0.64s cubic-bezier(0.41, 0.64, 0.32, 1.575);
+}
+.st-sunMoonThemeToggleBtn .themeToggleInput:checked + svg {
+  transform: rotate(90deg);
+}
+.st-sunMoonThemeToggleBtn .themeToggleInput:checked + svg mask > circle {
+  transform: translate(16px, -3px);
+}
+.st-sunMoonThemeToggleBtn .themeToggleInput:checked + svg .sunMoon {
+  transform: scale(0.55);
+}
+.st-sunMoonThemeToggleBtn .themeToggleInput:checked + svg .sunRay {
+  animation: showRay1832 0.4s ease forwards;
+}
+@keyframes showRay1832 {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* --- Progress Bar Styles --- */
+.progress-bar-container {
+  position: sticky;
+  top: 61px;
+  z-index: 99;
+  width: 100%;
+  height: 4px;
+  background-color: transparent;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    to right,
+    hsla(240, 87%, 50%, 0.8),
+    hsla(339, 87%, 50%, 0.8)
+  );
+  transition: width 0.2s linear;
+}
+
+/* --- MAIN LAYOUT (Test Page) --- */
+.main-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: var(--bg-main);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-header);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 8px 32px 0 var(--shadow-color);
+  transition: 0.3s;
+  overflow-x: hidden;
+}
+
+/* --- BUTTONS --- */
+.restart-button {
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius-sm);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  color: white;
+  background: linear-gradient(
+    to right,
+    hsla(240, 87%, 50%, 0.8),
+    hsla(339, 87%, 50%, 0.8)
+  );
+  border: none;
+}
+.restart-button:hover:not(:disabled) {
+  background-color: var(--accent-primary-hover);
+}
+.lift-on-hover:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* --- TYPING TEST SPECIFIC STYLES --- */
+/* Add this rule inside test-common.css */
+
+.typing-area {
+  margin-bottom: 2rem;
+  border: none;
+  background: none;
+  padding: 0;
+
+  /* --- NEW LINES --- */
+  max-height: 280px; /* Constrains the height to about 4 lines of text */
+  overflow-y: auto; /* Adds a vertical scrollbar when text overflows */
+  padding: 1rem; /* Add some internal padding */
+  border-radius: var(--border-radius-sm);
+  background-color: var(--secondary-button-bg);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Add this new rule to hide the scrollbar for Webkit browsers */
+.typing-area::-webkit-scrollbar {
+  display: none;
+}
+#text-display {
+  font-family: "Roboto Mono", monospace;
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  line-height: 1.8;
+  user-select: none;
+  color: var(--text-secondary);
+}
+#text-display span {
+  padding: 0.1em 0.05em;
+}
+#text-display span.correct {
+  background-color: rgba(var(--google-green-rgb), 0.15);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+#text-display span.incorrect {
+  background-color: rgba(var(--google-red-rgb), 0.15);
+  color: var(--error-color);
+  border-radius: 4px;
+}
+#text-display span.current {
+  position: relative;
+  background-color: transparent;
+  color: var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+  animation: blink-underline 1s infinite;
+}
+@keyframes blink-underline {
+  50% {
+    border-bottom-color: transparent;
+  }
+}
+.text-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: -1;
+}
+.results-container {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+.result-item {
+  text-align: center;
+}
+.result-item .label {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+.result-item .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Add this style for the new mute button */
+.header-btn {
+  background: none;
+  border: none;
+  color: var(--accent-primary);
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  line-height: 1;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- RESPONSIVE STYLES --- */
+
+/* For Tablets and smaller devices */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 1rem 1.5rem;
+  }
+
+  .app-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .main-container {
+    margin: 1.5rem auto;
+    padding: 2rem;
+  }
+
+  #text-display {
+    font-size: 1.3rem;
+  }
+
+  .results-container {
+    gap: 1rem 2rem;
+    grid-template-columns: repeat(2, 1fr); /* Stacks results in a 2xN grid */
+  }
+
+  .result-item .value {
+    font-size: 2rem;
+  }
+}
+
+/* For Mobile phones */
+@media (max-width: 480px) {
+  .page-content {
+    padding: 1rem;
+  }
+
+  .app-header {
+    padding: 1rem;
+  }
+
+  .back-text {
+    display: none; /* Hides "Change Mode" text on small screens */
+  }
+
+  .main-container {
+    padding: 1.5rem;
+  }
+
+  .typing-area {
+    padding: 0.75rem;
+  }
+
+  #text-display {
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+  }
+
+  .results-container {
+    gap: 1.5rem;
+  }
+}

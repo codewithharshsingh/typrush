@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeX - Custom Words Test</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="TypeX" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="css/test-common.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="index.html" class="back-button"
+        ><i class="fa-solid fa-arrow-left"></i> Change Mode</a
+      >
+      <div id="header-timer" class="header-timer">0:00</div>
+      <button id="mute-btn" class="header-btn">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+    </header>
+
+    <div class="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+
+    <main class="page-content">
+      <div class="main-container">
+        <div id="text-display-area" class="typing-area">
+          <div id="text-display"></div>
+          <input
+            type="text"
+            id="text-input"
+            class="text-input"
+            aria-label="Typing input"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+        </div>
+
+        <div class="results-container">
+          <div class="result-item">
+            <span class="label">WPM</span>
+            <span id="wpm-result" class="value">0</span>
+          </div>
+          <div class="result-item">
+            <span class="label">Accuracy</span>
+            <span id="accuracy-result" class="value">100%</span>
+          </div>
+        </div>
+        <button id="restart-btn" class="restart-button lift-on-hover">
+          Restart
+        </button>
+      </div>
+    </main>
+
+    <audio id="button-click-sound" src="sounds/muteUnmute.mp3"></audio>
+    <audio id="key-press-sound" src="sounds/click.mp3"></audio>
+    <script src="js/text-samples.js"></script>
+    <script src="js/custom-words.js"></script>
+  </body>
+</html>
